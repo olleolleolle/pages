@@ -1,0 +1,32 @@
+<div class="dropzone file-dropzone"
+     data-url="<%= admin_page_files_url(@locale, @page) %>">
+  <div class="dz-message">
+    <h1>
+      Upload files
+    </h1>
+    <p>
+      Drag files here to upload, or click this box.
+    </p>
+  </div>
+</div>
+
+<% if @page.files.any? %>
+  <ul class="filelist" data-url="<%= reorder_admin_page_files_url(@locale, @page) %>">
+    <% @page.files.each do |file| %>
+      <li data-file-id="<%= file.id %>">
+        <span class="actions">
+          <%= link_to "Delete", admin_page_file_path(@locale, @page, file), class: :delete, method: :delete, data: {confirm: 'Are you sure? There is no undo.'} %>
+        </span>
+        <div class="drag_handle"></div>
+        <strong><%= file.name %></strong> &ndash; <%= link_to file.filename, page_file_path(@locale, @page, file) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No files added yet.</p>
+<% end %>
+<p>
+  <button type="button" class="upload-file-button">
+    Upload file
+  </button>
+</p>

@@ -7,6 +7,7 @@
 #= require underscore
 
 # Vendored assets
+#= require dropzone
 #= require jquery.dimscreen
 #= require jquery.fieldselection
 
@@ -17,6 +18,7 @@
 #= require pages/admin/controllers/users_controller
 #= require pages/admin/features/content_tabs
 #= require pages/admin/features/editable_image
+#= require pages/admin/features/file_uploads
 #= require pages/admin/features/modal
 #= require pages/admin/features/page_images
 #= require pages/admin/features/rich_text

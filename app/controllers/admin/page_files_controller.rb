@@ -38,8 +38,25 @@ module Admin
     def create
       @page_file = @page.files.new
       @page_file.update(page_file_params.merge(locale: @locale))
-      flash[:notice] = "Error uploading file!" unless @page_file.valid?
-      redirect_to_page
+
+      respond_to do |format|
+        if @page_file.valid?
+          format.html do
+            redirect_to_page
+          end
+          format.json do
+            render text: 'ok'
+          end
+        else
+          format.html do
+            flash[:notice] = "Error uploading file!"
+            redirect_to_page
+          end
+          format.json do
+            render status: 403, json: { error: "Not a valid file" }
+          end
+        end
+      end
     end
 
     def edit
