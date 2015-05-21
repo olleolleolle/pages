@@ -102,9 +102,6 @@ class Admin.Controllers.PagesController extends Admin.Controllers.Base
     $(".upload-images-button").click ->
       Modal.show "<div class=\"uploadImages\">" + $("#new-image").html() + "</div>"
 
-    $(".upload-file-button").click ->
-      Modal.show "<div class=\"uploadImages\">" + $("#new-file").html() + "</div>"
-
     # Reordering files
     $(".file-list").each ->
       list = this

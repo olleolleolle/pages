@@ -117,26 +117,3 @@
     </p>
   <% end %>
 </div>
-
-
-<%# #### UPLOAD FILE #### %>
-<% if @page.template_config.value(:files) %>
-  <div id="new-file" class="page_new_file">
-    <h2>Upload new file</h2>
-    <%= form_for((@new_file = PageFile.new), url: admin_page_files_path(@locale, @page), html: {multipart: true}) do |f| %>
-      <%= labelled_field f.text_field( :name, size: 48 ), "Name",
-        errors: @new_file.errors[:name]
-      %>
-      <%= labelled_field f.text_field( :description, size: 48 ), "Description",
-        errors: @new_file.errors[:name]
-      %>
-      <%= labelled_field f.file_field( :file ), "File",
-        errors: @new_file.errors[:file]
-      %>
-      <p>
-        <%= submit_tag "Upload" %> or
-        <%= link_to "Cancel", "#", class: "cancel clear-modal" %>
-      </p>
-    <% end %>
-  </div>
-<% end %>
