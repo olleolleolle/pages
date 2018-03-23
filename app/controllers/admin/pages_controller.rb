@@ -12,6 +12,16 @@ module Admin
       @root_pages = Page.roots.in_locale(@locale).visible
     end
 
+    def calendar
+      @pages = Page.with_dates
+                   .order("starts_at DESC")
+                   .in_locale(@locale)
+                   .visible
+                   .paginate(per_page: 50, page: params[:page])
+      @parents = Page.where(id: @pages.pluck(:parent_page_id).uniq.compact)
+                     .in_locale(@locale)
+    end
+
     def deleted
       @pages = Page.deleted.by_updated_at.in_locale(@locale)
     end
